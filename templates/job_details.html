@@ -1,0 +1,75 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+    {% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+
+```
+    <!-- Job Details Row -->
+    <div class="row g-4 align-items-center">
+        <!-- Job Details -->
+        <div class="col-md-12">
+            <h2 class="mb-3 text-primary">{{ list.job_name }}</h2>
+            <p class="mb-2"><strong>Description:</strong> {{ list.description }}</p>
+            <p class="mb-2"><strong>Description:</strong> {{ list.Address }}</p>
+            <p class="mb-2"><strong>Description:</strong> {{ list.Location }}</p>
+            <p class="mb-2"><strong>Description:</strong> {{ list.Job_or_company_details}}</p>
+            <p class="mb-2"><strong>Submission Date:</strong> {{ list.submission_date }}</p>
+            <p class="mb-2"><strong>Vacancy:</strong> {{ list.vacancy }}</p>
+            <p class="mb-2"><strong>Budget:</strong> {{ list.budget }}</p>
+        </div>
+    </div>
+
+    <!-- Common Section for All Jobs -->
+    <div class="mt-5 p-4 bg-light rounded-3 border-start border-4 border-primary shadow-sm">
+        <h4 class="fw-bold text-primary mb-3">About the Job</h4>
+        <p class="text-secondary mb-3">
+            We’re looking for dedicated and passionate individuals who are eager to make an impact through their work.
+            Whether you’re a fresher or an experienced professional, if you have the skills and enthusiasm —
+            this opportunity is for you!
+        </p>
+
+        <h5 class="fw-semibold text-dark mt-3">Who Can Apply</h5>
+        <ul class="text-secondary">
+            <li>Students, freelancers, or professionals with relevant skills.</li>
+            <li>Individuals who can meet deadlines and maintain high-quality work.</li>
+            <li>People with strong communication and teamwork abilities.</li>
+        </ul>
+
+        <h5 class="fw-semibold text-dark mt-3">Perks & Benefits</h5>
+        <ul class="text-secondary">
+            <li>Certificate of Completion or Recommendation Letter.</li>
+            <li>Flexible working hours and remote opportunities.</li>
+            <li>Chance to build professional experience and expand your portfolio.</li>
+        </ul>
+
+        <h5 class="fw-semibold text-dark mt-3">Additional Information</h5>
+        <p class="text-secondary">
+            Selected candidates will be contacted via email for further steps.
+            We appreciate your interest and look forward to seeing your creativity and dedication in action!
+        </p>
+    </div>
+
+    <!-- Apply Button -->
+    <div class="mt-4 text-end">
+        <a href="{% url 'freelancer:apply' %}" class="btn btn-primary px-4 py-2 fw-semibold shadow">
+            Apply Now
+        </a>
+    </div>
+</div>
+```
+
+</div>
+{% endblock %}

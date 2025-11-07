@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Category Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore By Category</h1>
+        <div class="row g-4">
+            {% for i in category %}
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="cat-item rounded p-4 d-flex flex-column align-items-center text-center h-100"
+                     style="background:#f9f9f9; min-height:350px;">
+
+                    <!-- Category Image -->
+                    {% if i.image %}
+                        <img class="img-fluid mb-3" src="{{ i.image.url }}" alt="{{ i.name }}"
+                             style="height:120px; width:100%; object-fit:cover; border-radius:6px;" />
+                    {% endif %}
+
+                    <!-- Category Icon -->
+                    <i class="fa fa-3x fa-mail-bulk text-primary mb-3"></i>
+
+                    <!-- Category Name -->
+                    <h6 class="mb-2">{{ i.name }}</h6>
+
+                    <!-- Category Description -->
+                    <p class="mb-0">{{ i.description }}</p>
+
+                    <!-- Spacer to push button to bottom -->
+                    <div class="mt-auto"></div>
+
+                    <!-- View Jobs Button -->
+                    <a href="{% url 'client:Job_list' %}"
+                       class="btn btn-primary mt-3"
+                       style="display:block; margin: 0 auto;">
+                        View Jobs
+                    </a>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Category End -->
+{% endblock %}

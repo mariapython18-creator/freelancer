@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- 🔍 Search Form -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <form method="GET" action="{% url 'client:search' %}" class="input-group shadow-sm">
+                <input type="text" name="q" class="form-control" placeholder="Search jobs..." value="{{ query }}">
+                <button type="submit" class="btn btn-primary px-4">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🔎 Search Results -->
+    <h2 class="mb-4 text-center text-primary fw-bold">Search Results</h2>
+
+    <div class="row g-4">
+        {% if results %}
+            {% for job in results %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-lg border-0 rounded-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark fw-semibold">{{ job.job_name }}</h5>
+                            <p class="card-text text-muted small">{{ job.description|truncatewords:25 }}</p>
+                        </div>
+
+                        <!-- 💡 Action Buttons -->
+                        <div class="card-footer bg-light border-0">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a class="btn btn-outline-primary btn-sm" href="{% url 'client:Job_details' job.pk %}">
+                                        <i class="fa fa-info-circle me-1"></i> Know More
+                                    </a>
+                                     {% if request.user.is_authenticated and request.user.role == 'freelancer' %}
+                                    <a class="btn btn-outline-success btn-sm" href="{% url 'freelancer:apply' %}">
+                                        <i class="fa fa-paper-plane me-1"></i> Apply Now
+                                    </a>
+                                     {% endif %}
+                                    <a class="btn btn-outline-info btn-sm" href="{% url 'freelancer:job_status' job.id %}">
+                                        <i class="fa fa-eye me-1"></i> Status
+                                    </a>
+                                </div>
+
+                                <!-- 🧑‍💼 Show only for clients -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <div class="alert alert-warning d-inline-block px-5 py-3 shadow-sm">
+                    No results found.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
